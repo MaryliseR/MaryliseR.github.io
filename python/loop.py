@@ -12,3 +12,21 @@ for item in numbers:
          data.append(item - 10)
 
 data
+
+places = ["Jordan", "South Africa", "Yellow Stone", "Costa Rica"]
+travel = []
+for place in places:
+     travel.append("I would like to visit " + place)
+
+for place in places:
+        print("I would like to visit " + place + ".")
+
+
+for fruit in fruits:
+        if fruit == "plum":
+              print(fruit)
+
+hilt_class = ["Marylise", "Charlie", "Pauline"]
+for name in hilt_class:
+        if name == "Marylise"
+            print("My name is Marylise")
