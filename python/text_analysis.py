@@ -119,8 +119,8 @@ corpus_two_results = results[1]
 
 # Visualization
 # Creating dispersion plots of particular words in a specific text
-nltk.Text(doyle[0]).dispersion_plot(['evidence', 'clue', 'science', 'love', 'say', 'said'])
-nltk.Text(bronte[0]).dispersion_plot(['evidence', 'clue', 'science', 'love', 'say', 'said'])
+#nltk.Text(doyle[0]).dispersion_plot(['evidence', 'clue', 'science', 'love', 'say', 'said'])
+#nltk.Text(bronte[0]).dispersion_plot(['evidence', 'clue', 'science', 'love', 'say', 'said'])
 # Text = text used as object (several facets, can apply different functions to it to show these different facets)
 
 
@@ -129,16 +129,29 @@ nltk.Text(bronte[0]).dispersion_plot(['evidence', 'clue', 'science', 'love', 'sa
 # the doyle corpus and the bronte corpus.
 
 # Seeing how much each author uses the pronouns 'he' and 'she', and visualizing it.
-subject_pronoun_he = get_counts_in_corpora('he', doyle_freq_dist, bronte_freq_dist)
-corpus_doyle_results = subject_pronoun_he[0]
-corpus_bronte_results = subject_pronoun_he[1]
+def nb_occurrences_in_corpora(token, corpus_doyle, corpus_bronte):
+    """Take two corpora, represented as lists of frequency distributions, and token query.
+    Return the frequency of that token in all the texts in the corpus. The result
+    Should be a list of two lists, one for each text."""
+    corpus_doyle_counts = [text_freq_dist[token] for text_freq_dist in corpus_doyle]
+    corpus_bronte_counts = [text_freq_dist[token] for text_freq_dist in corpus_bronte]
+    return  [corpus_doyle_counts, corpus_bronte_counts]
+#print(corpus_doyle_counts, corpus_bronte_counts)
 
-subject_pronoun_she = get_counts_in_corpora('she', doyle_freq_dist, bronte_freq_dist)
-corpus_doyle_results2 = subject_pronoun_she[0]
-corpus_bronte_results2 = subject_pronoun_she[1]
+subject_pronoun_man = nb_occurrences_in_corpora('man', doyle_freq_dist, bronte_freq_dist)
+corpus_doyle_results = subject_pronoun_man[0]
+corpus_bronte_results = subject_pronoun_ man[1]
+
+subject_pronoun_woman = nb_occurrences_in_corpora('woman', doyle_freq_dist, bronte_freq_dist)
+corpus_doyle_results2 = subject_pronoun_woman[0]
+corpus_bronte_results2 = subject_pronoun_woman[1]
 
 print(corpus_doyle_results)
 print(corpus_bronte_results)
-print (====)
+print('=====')
 print(corpus_doyle_results2)
 print(corpus_bronte_results2)
+
+# Visualizing the results using frequency plots (for the first text for each author)
+nltk.Text(doyle[0]).dispersion_plot(['man', 'woman'])
+nltk.Text(bronte[0]).dispersion_plot(['man', 'woman'])
